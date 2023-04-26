@@ -49,10 +49,9 @@ body::-webkit-scrollbar {
   /*border: 2px solid black;*/
 }
 
-<<<<<<< HEAD
 .button.is-primary {
   background-color: red !important;
-=======
+}
 .input {
   width: 80% !important;
   display: block !important;
@@ -68,5 +67,4 @@ body::-webkit-scrollbar {
 .button.is-primary {
   width: 50% !important;
   display: inline-block !important;
->>>>>>> ea4951734b22fa8bb0d870208ee825e939bde4d4
 }
