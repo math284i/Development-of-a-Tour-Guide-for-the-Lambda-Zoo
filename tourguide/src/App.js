@@ -1,23 +1,16 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import { AppContainer } from './AppContainer';
 import './App.css';
 
 function App() {
+
+  const [ result, setResult ] = useState('');
+
+  const updateResult = (update) => setResult(update);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <AppContainer onClick={updateResult}/>
     </div>
   );
 }
