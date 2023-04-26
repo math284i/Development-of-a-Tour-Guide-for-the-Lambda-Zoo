@@ -1,69 +1,30 @@
-
-
-// Example λx.(y.x)
-const t = {
-    type: 'abstraction',
-    param: 'x',
-    body: {
-        type: 'application',
-        left: {
-            type: 'variable',
-            name: 'x'
-        },
-        right: {
-            type: 'variable',
-            name: 'y'
-        }
-    },
-    symbol: 'λ'
-};
-
 export class LambdaCalculus {
-    constructor(expressions = []) {
+    constructor(expressions) {
         this.expressions = expressions;
     }
 
     toString() {
-        const outputString = "";
-        this.expressions.forEach(element => {
-            outputString += " Hello world!";
-        });
+        console.log("toString: size = " + this.expressions.length);
+        let outputString = "";
+        for (let i = 0; i < this.expressions.length; i++) {
+            outputString += `${this.expressions[i].toString()}`;
+        }
         return outputString;
     }
 }
 
 
 export class LambdaExpr {
-    constructor(type, param, body, symbol) {
+    constructor(type, param, symbol, application) {
       this.type = type;
       this.param = param;
-      this.body = body;
       this.symbol = symbol;
-    }
-
-    testFunction() {
-        if (this.type === "abstraction") {
-            return this.symbol + this.param + "." + this.body.testFunction();
-        }
-        if (this.type === "application") {
-            return "sup";
-        }
+      this.application = application;
     }
 
     toString() {
-        if (this.type === 'variable') {
-          return this.param;
-        } else if (this.type === 'abstraction') {
-          const bodyString = this.body ? this.body.toString() : '';
-          return `${this.symbol}${this.param}.${bodyString}`;
-        } else if (this.type === 'application') {
-          const leftString = this.left ? this.left.toString() : '';
-          const rightString = this.right ? this.right.toString() : '';
-          return `${leftString}${rightString}`;
-        } else {
-          throw new Error('Unknown expression type');
-        }
-      }
+        return `(${this.symbol}${this.param}.${this.application.toString()})`
+    }
 }
 
 export class Application {
@@ -74,7 +35,7 @@ export class Application {
     }
 
     toString() {
-        return this.left.toString() + "." + this.right.toString();
+        return `(${this.left.toString()}${this.right.toString()})`;
     }
 }
 
@@ -83,58 +44,105 @@ export class Variable {
         this.type = type;
         this.name = name;
     }
+
+    toString() {
+        return this.name;
+    }
+
 }
 
+// Example λx.(y.x)
 const lambdaCalculus = new LambdaCalculus(
+    [
     new LambdaExpr(
         "abstraction",
         "x",
+        "λ",
         new Application(
             "application",
             new Variable(
-                "variable",
+                "variableLeft",
                 "y"
             ),
+            new Variable(
+                "variableRight",
+                "x"
+            ),
+        ),
+    ),
+    ]
+);
+
+const t2 = new LambdaCalculus(
+    [
+        new LambdaExpr(
+            "abstraction",
+            "x",
+            "λ",
             new Variable(
                 "variable",
                 "x"
             ),
         ),
-        "λ"
-    ),
+        new LambdaExpr(
+            "abstraction",
+            "y",
+            "λ",
+            new Variable(
+                "variable",
+                "y"
+            ),
+        ),
+        new Variable(
+            "variable",
+            "z",
+        ),
+    ]
 );
 
-
-
-// Anything below this line has to be rewritten. 
-const lambdaExpr = new LambdaExpr(
-    'abstraction',
-    'x',
-    {
-      type: 'application',
-      left: {
-        type: 'variable',
-        name: 'z'
-      },
-      right: {
-        type: 'variable',
-        name: 'y'
-      }
-    },
-    'λ'
+const t3 = new LambdaCalculus(
+    [
+        new LambdaExpr(
+            "abstraction",
+            "x",
+            "λ",
+            new Application(
+                "application",
+                new Variable(
+                    "variableLeft",
+                    "x"
+                ),
+                new Variable(
+                    "variableRight",
+                    "x"
+                )
+            )
+        ),
+        new Application(
+            "application",
+            new LambdaExpr(
+                "abstraction",
+                "x",
+                "λ",
+                new Variable(
+                    "variable",
+                    "x"
+                )
+            ),
+            new LambdaExpr(
+                "abstractino",
+                "x",
+                "λ",
+                new Variable(
+                    "variable",
+                    "x"
+                )
+            ),
+        )
+    ]
 );
 
-const a = new LambdaExpr(
-    'abstraction',
-    'x',
-    new LambdaExpr(
-      'application',
-      new LambdaExpr('variable', 'x'),
-      new LambdaExpr('variable', 'y')
-    ),
-    'λ'
-  );
-
-//console.log("a: " + "" + a.toString());
-console.log("Testing: " + a.testFunction());
-
+console.log("From Datastructur: " + lambdaCalculus.toString());
+console.log("From Datastructur: " + t2.toString());
+console.log("From Datastructur: " + t3.toString());
+console.log("--------------------");

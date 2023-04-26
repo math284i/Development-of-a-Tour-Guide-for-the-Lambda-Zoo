@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 import 'bulma/css/bulma.css';
-import { LambdaExpr } from "./Infrastructure/Datastructur.js"
+import { LambdaCalculus } from "./Infrastructure/Datastructur.js"
+import { InputHandler } from "./Infrastructure/InputHandler.js"
 
 
 
@@ -12,24 +13,7 @@ export class AppContainer extends React.Component {
     }
 
     handleClick(e) {
-        const lambdaExpr = new LambdaExpr(
-            'abstraction',
-            'x',
-            {
-              type: 'application',
-              left: {
-                type: 'variable',
-                name: 'x'
-              },
-              right: {
-                type: 'variable',
-                name: 'y'
-              }
-            },
-            'λ'
-        );
-            var result = lambdaExpr.toString();
-            console.log("Result: " + result);
+            const result = "Hej Kp!";
             this.props.onClick(result);
         }
 
