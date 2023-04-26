@@ -5,7 +5,6 @@ import { LambdaCalculus } from "./Infrastructure/Datastructur.js"
 import { InputHandler } from "./Infrastructure/InputHandler.js"
 
 
-
 export class AppContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -15,11 +14,12 @@ export class AppContainer extends React.Component {
     handleClick(e) {
             const result = "Hej Kp!";
             this.props.onClick(result);
+            
         }
 
     render() {
         return (
-            <div className="divElement">
+            <div>
                 <button className="button is-primary" onClick={this.handleClick}>Generate</button>
             </div>
         );

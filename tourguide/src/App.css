@@ -1,42 +1,72 @@
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .App {
+  height: 100vh;
+  width: 100vw;
+}
+
+.Upper {
   text-align: center;
+  height: 30%;
+  width: 100%;
+  /*border: 2px solid black;*/
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Lower {
+  height: 70%;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Result {
+  display: inline-block;
+  height: 100%;
+  width: 70%;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  /*border: 2px solid black;*/
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Stats {
+  display: inline-block;
+  height: 100%;
+  width: 30%;
+  border-top: 2px solid black;
+  /*border: 2px solid black;*/
 }
 
-.App-link {
-  color: #61dafb;
+.SecondUpper {
+  display: inline-block;
+  width: 80%;
+  /*border: 2px solid black;*/
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SecondUpperChild {
+  display: inline-block;
+  height: 100%;
+  width: 50%;
+  /*border: 2px solid black;*/
+}
+
+<<<<<<< HEAD
+.button.is-primary {
+  background-color: red !important;
+=======
+.input {
+  width: 80% !important;
+  display: block !important;
+  margin: 0 auto !important;
+  margin-bottom: 10px !important;
+  background-color: white !important;
+}
+
+.select.is-fullwidth {
+  width: 80% !important;
 }
 
 .button.is-primary {
-  background-color: red !important;
+  width: 50% !important;
+  display: inline-block !important;
+>>>>>>> ea4951734b22fa8bb0d870208ee825e939bde4d4
 }
