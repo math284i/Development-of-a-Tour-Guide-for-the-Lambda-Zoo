@@ -4,7 +4,6 @@ import 'bulma/css/bulma.css';
 import { LambdaExpr } from "./Infrastructure/Datastructur.js"
 
 
-
 export class AppContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -31,11 +30,12 @@ export class AppContainer extends React.Component {
             var result = lambdaExpr.toString();
             console.log("Result: " + result);
             this.props.onClick(result);
+            
         }
 
     render() {
         return (
-            <div className="divElement">
+            <div>
                 <button className="button is-primary" onClick={this.handleClick}>Generate</button>
             </div>
         );
