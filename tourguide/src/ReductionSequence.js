@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-export class Input extends React.Component {
+export class ReductionSequence extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
@@ -14,8 +14,8 @@ export class Input extends React.Component {
 
     render() {
         return (
-        <div className="control">
-            <input placeholder={`Enter lambda term`} className="input" value={this.props.value} onChange={this.handleChange}/>
+        <div>
+          <h2 className="title is-2">Reduction Sequence</h2>
         </div>
         );
     }

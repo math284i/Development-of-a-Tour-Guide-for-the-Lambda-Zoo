@@ -13,8 +13,9 @@ export class AppContainer extends React.Component {
 
     handleClick(e) {
             const result = "Hej Kp!";
-            this.props.onClick(result);
-            
+            const number = 2;
+            const determinism = "False";
+            this.props.onClick(result, number, determinism);
         }
 
     render() {

@@ -20,7 +20,7 @@ body::-webkit-scrollbar {
 }
 
 .Result {
-  display: inline-block;
+  float: left;
   height: 100%;
   width: 70%;
   border-top: 2px solid black;
@@ -29,7 +29,7 @@ body::-webkit-scrollbar {
 }
 
 .Stats {
-  display: inline-block;
+  float: left;
   height: 100%;
   width: 30%;
   border-top: 2px solid black;
@@ -51,12 +51,18 @@ body::-webkit-scrollbar {
 
 .button.is-primary {
   background-color: red !important;
+  width: 50% !important;
+  display: inline-block !important;
 }
+
+.button.is-normal.is-light {
+  display: inline-block !important;
+}
+
 .input {
+  display: inline-block !important;
   width: 80% !important;
-  display: block !important;
-  margin: 0 auto !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 2% !important;
   background-color: white !important;
 }
 
@@ -64,7 +70,16 @@ body::-webkit-scrollbar {
   width: 80% !important;
 }
 
-.button.is-primary {
-  width: 50% !important;
-  display: inline-block !important;
+.title.is-1 {
+  margin-top: 1% !important;
+}
+
+.title.is-2 {
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+}
+
+.title.is-3 {
+  margin-top: 5% !important;
+  margin-left: 10px !important;
 }
