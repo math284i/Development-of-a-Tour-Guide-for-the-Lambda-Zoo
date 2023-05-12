@@ -9,13 +9,13 @@ body::-webkit-scrollbar {
 
 .Upper {
   text-align: center;
-  height: 30%;
+  height: 40%;
   width: 100%;
   /*border: 2px solid black;*/
 }
 
 .Lower {
-  height: 70%;
+  height: 60%;
   width: 100%;
 }
 
@@ -62,7 +62,7 @@ body::-webkit-scrollbar {
 .input {
   display: inline-block !important;
   width: 80% !important;
-  margin-bottom: 2% !important;
+  margin-bottom: 5px !important;
   background-color: white !important;
 }
 

@@ -10,7 +10,7 @@ function App() {
 
   const [ result, setResult ] = useState('');
   const [ input, setInput ] = useState('');
-  const [ setting, setSetting ] = useState('LCBW');
+  const [ setting, setSetting ] = useState('CBN');
   const [ nrSteps, setNrSteps ] = useState();
   const [ determinism, setDeterminism ] = useState('');
 
@@ -41,7 +41,7 @@ function App() {
         <div className="SecondUpper">
           <Setting label="Reduce using:" onChange={updateSetting} />
           <div className="SecondUpperChild">
-            <AppContainer setting={setting} onClick={updateResult}/>
+            <AppContainer input={input} setting={setting} onClick={updateResult}/>
           </div>
         </div>
       </div>
