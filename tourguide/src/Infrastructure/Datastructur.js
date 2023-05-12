@@ -130,7 +130,7 @@ const t3 = new LambdaCalculus(
                 )
             ),
             new LambdaExpr(
-                "abstractino",
+                "abstraction",
                 "x",
                 "λ",
                 new Variable(

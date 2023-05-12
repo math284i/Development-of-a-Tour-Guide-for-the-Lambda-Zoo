@@ -43,20 +43,28 @@ body::-webkit-scrollbar {
 }
 
 .SecondUpperChild {
-  display: inline-block;
+  float: left;
   height: 100%;
   width: 50%;
   /*border: 2px solid black;*/
+}
+
+.ButtonDiv {
+  float: left;
 }
 
 .button.is-primary {
   background-color: red !important;
   width: 50% !important;
   display: inline-block !important;
+  vertical-align: center;
 }
 
 .button.is-normal.is-light {
   display: inline-block !important;
+  margin-right: 2px !important;
+  margin-left: 2px !important;
+  margin-bottom: 2px !important;
 }
 
 .input {
@@ -64,6 +72,10 @@ body::-webkit-scrollbar {
   width: 80% !important;
   margin-bottom: 5px !important;
   background-color: white !important;
+}
+
+.input.is-small {
+  margin-top: 5px !important;
 }
 
 .select.is-fullwidth {

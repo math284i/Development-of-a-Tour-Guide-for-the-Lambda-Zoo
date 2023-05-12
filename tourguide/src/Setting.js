@@ -19,9 +19,10 @@ export class Setting extends React.Component {
             <div className="select is-fullwidth">
                 <select onChange={this.handleChange}>
                     <option>CBN</option>
-                    <option>LCBW</option>
+                    <option>Custom</option>
                 </select>
             </div>
+            <input className="input is-small" placeholder={`Enter custom reduction sequence`} style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}} />
         </div>
         );
     }
