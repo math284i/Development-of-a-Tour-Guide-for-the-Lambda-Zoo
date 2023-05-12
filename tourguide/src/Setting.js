@@ -18,8 +18,8 @@ export class Setting extends React.Component {
             <label className="label">{this.props.label}</label>
             <div className="select is-fullwidth">
                 <select onChange={this.handleChange}>
+                    <option>CBN</option>
                     <option>LCBW</option>
-                    <option>RCBW</option>
                 </select>
             </div>
         </div>
