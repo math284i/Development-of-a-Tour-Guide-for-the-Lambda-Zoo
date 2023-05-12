@@ -3,6 +3,7 @@ import "./App.css";
 import 'bulma/css/bulma.css';
 import { LambdaCalculus } from "./Infrastructure/Datastructur.js"
 import { InputHandler } from "./Infrastructure/InputHandler.js"
+import { TreeNode } from "./Infrastructure/ImprovedDataStructur";
 
 
 export class AppContainer extends React.Component {
