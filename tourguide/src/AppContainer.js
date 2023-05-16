@@ -2,34 +2,43 @@ import React from "react";
 import "./App.css";
 import 'bulma/css/bulma.css';
 import { LambdaCalculus } from "./Infrastructure/Datastructur.js"
-import { InputHandler } from "./Infrastructure/InputHandler.js"
+import { buildTermFromString, substituteInTree } from "./Infrastructure/InputHandler.js"
 import { TreeNode } from "./Infrastructure/ImprovedDataStructur";
 
 
 export class AppContainer extends React.Component {
     constructor(props) {
-        this.path = [];
         super(props);
+        this.path = [];
         this.handleClick = this.handleClick.bind(this);
     }
 
-
     callByName(term) {
-        //One beta step with cbn:
-        //If my left child is an abstraction (Has lambda)
-        //Then take the left childs left child and save
-        //Take the right child of my left child and substitute with my right child
-        //I become the result of the previous substitution
-        //Save me (toString) as a step in the path array
-        //Recursively call this function until no more terms are present or no more steps can be done
+        while(term.value === "APP") {
+            if(term.leftChild.value === "ABS") {
+                var func = term.leftChild.rightChild;
+                var parameter = term.leftChild.leftChild;
+                var subs = term.rightChild;
+
+                term = substituteInTree(func, parameter, subs);
+            } else if(term.leftChild.value === "APP") {
+                term.leftChild = this.callByName(term.leftChild);
+            } else if(term.rightChild.value === "APP") {
+                term.rightChild = this.callByName(term.rightChild);
+            } else {
+                break;
+            }
+            this.path.push(term);
+        }
         return term;
     }
 
     calculate(setting) {
         this.path.push(this.props.input)
+        var term = buildTermFromString(this.props.input);
         switch(setting) {
             case "CBN":
-                return this.callByName(this.props.input);
+                return this.callByName(term);
             default:
                 return "Setting undefined";
         }

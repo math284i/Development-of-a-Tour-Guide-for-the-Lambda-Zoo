@@ -1,3 +1,4 @@
+
 export class TreeNode {
     constructor(value) {
         this.value = value;
@@ -35,27 +36,32 @@ export class TreeNode {
     }
 }
 
-let root = new TreeNode("ABS");
-let leftChild = new TreeNode("App");
-let leftleft = new TreeNode("\\x");
-let leftRight = new TreeNode("App");
-let leftRightLeft = new TreeNode("\\y");
-let leftRightRight = new TreeNode("y");
+let root = new TreeNode("APP");
+let left = new TreeNode("ABS");
+let leftleft = new TreeNode("x");
+let leftRight = new TreeNode("ABS");
+let leftRightLeft = new TreeNode("y");
+let leftRightRight = new TreeNode("APP");
+let leftRightRightLeft = new TreeNode("x");
+let leftRightRightRight = new TreeNode("z");
+
+leftRightRight.leftChild = leftRightRightLeft;
+leftRightRight.rightChild = leftRightRightRight;
 
 leftRight.leftChild = leftRightLeft;
 leftRight.rightChild = leftRightRight;
 
-leftChild.leftChild = leftleft;
-leftChild.rightChild = leftRight;
+left.leftChild = leftleft;
+left.rightChild = leftRight;
 
-let rightChild = new TreeNode("App");
-let rightLeft = new TreeNode("\\z");
+let right = new TreeNode("ABS");
+let rightLeft = new TreeNode("z");
 let rightRight = new TreeNode("z");
-rightChild.leftChild = rightLeft;
-rightChild.rightChild = rightRight;
+right.leftChild = rightLeft;
+right.rightChild = rightRight;
 
-root.leftChild = leftChild;
-root.rightChild = rightChild;
+root.leftChild = left;
+root.rightChild = right;
 
 console.log("ImprovedDataStructur");
 console.log(TreeNode.toString(root));

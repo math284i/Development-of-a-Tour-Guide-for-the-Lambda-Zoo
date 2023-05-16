@@ -1,16 +1,21 @@
-
-class InputHandler {
-    buildTermFromString(termString) {
-        var regExp = /\(([^)]+)\)/g;
-        var matches = termString.match(regExp);
-        for (var i = 0; i < matches.length; i++) {
-            var str = matches[i];
-            console.log(str.substring(1, str.length - 1));
-        }
-        return termString;
+import { TreeNode } from "./ImprovedDataStructur";
+export function buildTermFromString(termString) {
+        return "Hej KP";
     }
 
-    findPairs(input) {
+export function substituteInTree(node, parameter, substituteWith) {
+  if(node.value === parameter.value) { //Basecase - If the tree is just a variable equal to parameter
+    node.value = substituteWith;
+  }else if(node.value === "APP") {
+    node.leftChild = substituteInTree(node.leftChild, parameter, substituteWith);
+    node.rightChild = substituteInTree(node.rightChild, parameter, substituteWith);
+  }else if(node.value === "ABS" && node.leftChild.value !== parameter) {
+    node.rightChild = substituteInTree(node.rightChild, parameter, substituteWith);
+  }
+  return node;
+}
+
+export function findPairs(input) {
         const len = input.split('(').length;
         const stringArray = new Array(len).fill("");
       
@@ -33,9 +38,37 @@ class InputHandler {
         }
         return stringArray;
       }
-}
+
+
+let root = new TreeNode("APP");
+let left = new TreeNode("ABS");
+let leftLeft = new TreeNode("x");
+let leftRight = new TreeNode("ABS");
+let leftRightLeft = new TreeNode("y");
+let leftRightRight = new TreeNode("APP");
+let leftRightRightLeft = new TreeNode("x");
+let leftRightRightRight = new TreeNode("z");
+      
+leftRightRight.leftChild = leftRightRightLeft;
+leftRightRight.rightChild = leftRightRightRight;
+      
+leftRight.leftChild = leftRightLeft;
+leftRight.rightChild = leftRightRight;
+      
+left.leftChild = leftLeft;
+left.rightChild = leftRight;
+      
+let right = new TreeNode("ABS");
+let rightLeft = new TreeNode("z");
+let rightRight = new TreeNode("z");
+right.leftChild = rightLeft;
+right.rightChild = rightRight;
+      
+root.leftChild = left;
+root.rightChild = right;
 
 const t1 = "(λx.(yx)(zp))"
-const inputHandler = new InputHandler();
-const lambdaTerm = inputHandler.findPairs(t1);
+const lambdaTerm = findPairs(t1);
 console.log(`LambdaTerm: ${lambdaTerm}`);
+const test = substituteInTree(leftRight, leftLeft, right);
+console.log('Testing: \n' + TreeNode.toString(test));
