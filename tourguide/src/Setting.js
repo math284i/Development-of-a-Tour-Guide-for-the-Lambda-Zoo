@@ -4,12 +4,18 @@ import "./App.css";
 export class Setting extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleSettingChange = this.handleSettingChange.bind(this);
+        this.handleCustomChange = this.handleCustomChange.bind(this);
     }
 
-    handleChange(e) {
+    handleSettingChange(e) {
         const value = e.target.value;
-        this.props.onChange(value);
+        this.props.onSettingChange(value);
+    }
+
+    handleCustomChange(e) {
+        const value = e.target.value;
+        this.props.onCustomChange(value);
     }
 
     render() {
@@ -17,12 +23,12 @@ export class Setting extends React.Component {
         <div className="SecondUpperChild">
             <label className="label">{this.props.label}</label>
             <div className="select is-fullwidth">
-                <select onChange={this.handleChange}>
+                <select onChange={this.handleSettingChange}>
                     <option>CBN</option>
                     <option>Custom</option>
                 </select>
             </div>
-            <input className="input is-small" placeholder={`Enter custom reduction sequence`} style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}} />
+            <input className="input is-small" value={this.props.value} placeholder={`Enter custom reduction sequence`} onChange={this.handleCustomChange} style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}} />
         </div>
         );
     }

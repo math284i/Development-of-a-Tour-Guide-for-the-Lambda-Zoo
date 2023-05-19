@@ -45,11 +45,14 @@ body::-webkit-scrollbar {
 .SecondUpperChild {
   float: left;
   height: 100%;
-  width: 50%;
+  width: 40%;
   /*border: 2px solid black;*/
 }
 
 .ButtonDiv {
+  margin-top: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   float: left;
 }
 

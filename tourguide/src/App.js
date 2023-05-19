@@ -11,6 +11,7 @@ function App() {
   const [ result, setResult ] = useState('');
   const [ input, setInput ] = useState('');
   const [ setting, setSetting ] = useState('CBN');
+  const [ custom, setCustom ] = useState('');
   const [ nrSteps, setNrSteps ] = useState();
   const [ determinism, setDeterminism ] = useState('');
 
@@ -27,10 +28,18 @@ function App() {
     setSetting(update);
     //console.log(update);
   }
+  const updateCustom = (update) => {
+    setCustom(update);
+    //console.log(update);
+  }
 
-  const addSymbol = (symbol) => {
+  const addSymbolToInput = (symbol) => {
     setInput(prevInput => prevInput + symbol);
     //console.log(input);
+  }
+  const addSymbolToCustom = (symbol) => {
+    setCustom(prevCustom => prevCustom + symbol);
+    //console.log(custom);
   }
 
   return (
@@ -38,17 +47,19 @@ function App() {
       <div className="Upper">
         <h1 className="title is-1">Lamda Zoo Tour Guide</h1>
         <div>
-          <div className="ButtonsDiv">
-            <button className="button is-normal is-light" onClick={() => addSymbol("λ")}>λ</button>
-            <button className="button is-normal is-light" onClick={() => addSymbol("↙")}>↙</button>
-            <button className="button is-normal is-light" onClick={() => addSymbol("↘")}>↘</button>
-            <button className="button is-normal is-light" onClick={() => addSymbol("↓")}>↓</button>
-            <button className="button is-normal is-light" onClick={() => addSymbol("β")}>β</button>
+          <div>
+            <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>
           </div>
           <Input value={input} onChange={updateInput} />
         </div>
         <div className="SecondUpper">
-          <Setting label="Reduce using:" setting={setting} onChange={updateSetting} />
+          <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>
+            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↙")}>↙</button>
+            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↘")}>↘</button>
+            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↓")}>↓</button>
+            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("β")}>β</button>
+          </div>
+          <Setting label="Reduce using:" setting={setting} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
           <div className="SecondUpperChild">
             <AppContainer input={input} setting={setting} onClick={updateResult}/>
           </div>
