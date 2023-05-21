@@ -36,12 +36,12 @@ export class TreeNode {
     }
 }
 
-let root = new TreeNode("ABS");
-let leftChild = new TreeNode("App");
-let leftleft = new TreeNode("\\x");
-let leftRight = new TreeNode("App");
-let leftRightLeft = new TreeNode("\\y");
-let leftRightRight = new TreeNode("y");
+let root = new TreeNode("ABS", null);
+let leftChild = new TreeNode("App", null);
+let leftleft = new TreeNode("\\x", null);
+let leftRight = new TreeNode("App", null);
+let leftRightLeft = new TreeNode("\\y", null);
+let leftRightRight = new TreeNode("y", null);
 
 leftRight.leftChild = leftRightLeft;
 leftRight.rightChild = leftRightRight;
@@ -49,9 +49,9 @@ leftRight.rightChild = leftRightRight;
 leftChild.leftChild = leftleft;
 leftChild.rightChild = leftRight;
 
-let rightChild = new TreeNode("App");
-let rightLeft = new TreeNode("\\z");
-let rightRight = new TreeNode("z");
+let rightChild = new TreeNode("App", null);
+let rightLeft = new TreeNode("\\z", null);
+let rightRight = new TreeNode("z", null);
 rightChild.leftChild = rightLeft;
 rightChild.rightChild = rightRight;
 
@@ -59,4 +59,4 @@ root.leftChild = leftChild;
 root.rightChild = rightChild;
 
 console.log("ImprovedDataStructur");
-console.log(TreeNode.toString(root));
+console.log(TreeNode.ToString(root));

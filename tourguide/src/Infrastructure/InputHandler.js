@@ -1,6 +1,9 @@
 import { TreeNode } from "./ImprovedDataStructur";
+import { InputHandler } from "./InputHanlderImproved";
 export function buildTermFromString(termString) {
-        return "Hej KP";
+        let inputHanlder = new InputHandler();    
+        let root = inputHanlder.BuildTreeFromString(termString, null);
+        return TreeNode.ToString(root);
     }
 
 export function substituteInTree(node, parameter, substituteWith) {
@@ -15,39 +18,15 @@ export function substituteInTree(node, parameter, substituteWith) {
   return node;
 }
 
-export function findPairs(input) {
-        const len = input.split('(').length;
-        const stringArray = new Array(len).fill("");
-      
-        let currentNestedLevel = -1;
-        for (let i = 0; i < input.length; i++) {
-          const element = input.charAt(i);
-          switch (element) {
-            case '(':
-              currentNestedLevel++;
-              break;
-            case ')':
-              if (currentNestedLevel !== 0) {
-                currentNestedLevel--;
-              }
-              break;
-            default:
-              stringArray[currentNestedLevel] += element;
-              break;
-          }
-        }
-        return stringArray;
-      }
 
-
-let root = new TreeNode("APP");
-let left = new TreeNode("ABS");
-let leftLeft = new TreeNode("x");
-let leftRight = new TreeNode("ABS");
-let leftRightLeft = new TreeNode("y");
-let leftRightRight = new TreeNode("APP");
-let leftRightRightLeft = new TreeNode("x");
-let leftRightRightRight = new TreeNode("z");
+let root = new TreeNode("APP", null);
+let left = new TreeNode("ABS", null);
+let leftLeft = new TreeNode("x", null);
+let leftRight = new TreeNode("ABS", null);
+let leftRightLeft = new TreeNode("y", null);
+let leftRightRight = new TreeNode("APP", null);
+let leftRightRightLeft = new TreeNode("x", null);
+let leftRightRightRight = new TreeNode("z", null);
       
 leftRightRight.leftChild = leftRightRightLeft;
 leftRightRight.rightChild = leftRightRightRight;
@@ -58,17 +37,14 @@ leftRight.rightChild = leftRightRight;
 left.leftChild = leftLeft;
 left.rightChild = leftRight;
       
-let right = new TreeNode("ABS");
-let rightLeft = new TreeNode("z");
-let rightRight = new TreeNode("z");
+let right = new TreeNode("ABS", null);
+let rightLeft = new TreeNode("z", null);
+let rightRight = new TreeNode("z", null);
 right.leftChild = rightLeft;
 right.rightChild = rightRight;
       
 root.leftChild = left;
 root.rightChild = right;
 
-const t1 = "(λx.(yx)(zp))"
-const lambdaTerm = findPairs(t1);
-console.log(`LambdaTerm: ${lambdaTerm}`);
 const test = substituteInTree(leftRight, leftLeft, right);
-console.log('Testing: \n' + TreeNode.toString(test));
+console.log('Testing: \n' + TreeNode.ToString(test));

@@ -1,10 +1,19 @@
 import React from "react";
+import { Fragment } from "react";
 import "./App.css";
 import 'bulma/css/bulma.css';
-import { LambdaCalculus } from "./Infrastructure/Datastructur.js"
 import { buildTermFromString, substituteInTree } from "./Infrastructure/InputHandler.js"
 import { TreeNode } from "./Infrastructure/ImprovedDataStructur";
 
+const TreeNodeComponent = ({ treeString }) => {
+    return (
+      <pre style={{ whiteSpace: 'pre-wrap' }}>
+        {treeString}
+      </pre>
+    );
+  };
+  
+  export default TreeNodeComponent;
 
 export class AppContainer extends React.Component {
     constructor(props) {
@@ -36,8 +45,14 @@ export class AppContainer extends React.Component {
     calculate(setting) {
         this.path.push(this.props.input)
         var term = buildTermFromString(this.props.input);
+         
         switch(setting) {
             case "CBN":
+                return (
+                    <div>
+                        <TreeNodeComponent treeString={this.callByName(term)} />
+                    </div>
+                 );
                 return this.callByName(term);
             default:
                 return "Setting undefined";
