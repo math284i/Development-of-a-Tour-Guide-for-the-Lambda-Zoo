@@ -5,15 +5,13 @@ import 'bulma/css/bulma.css';
 import { buildTermFromString, substituteInTree } from "./Infrastructure/InputHandler.js"
 import { TreeNode } from "./Infrastructure/ImprovedDataStructur";
 
-const TreeNodeComponent = ({ treeString }) => {
+export const TreeNodeComponent = ({ treeString }) => {
     return (
       <pre style={{ whiteSpace: 'pre-wrap' }}>
         {treeString}
       </pre>
     );
   };
-  
-  export default TreeNodeComponent;
 
 export class AppContainer extends React.Component {
     constructor(props) {
@@ -22,36 +20,42 @@ export class AppContainer extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    callByName(term) {
+    callByName(term, isRecursive) {
+        if(term.Value === "ABS" && term.RightChild.Value === "APP") {
+            term.RightChild = this.callByName(term.RightChild, true);
+            this.path.push(TreeNode.ToString(term));
+        }
         while(term.Value === "APP") {
             if(term.LeftChild.Value === "ABS") {
                 var func = term.LeftChild.RightChild;
                 var parameter = term.LeftChild.LeftChild;
                 var subs = term.RightChild;
                 term = substituteInTree(func, parameter, subs);
-                console.log(TreeNode.ToString(term));
             } else if(term.LeftChild.Value === "APP") {
-                term.LeftChild = this.callByName(term.LeftChild);
+                term.LeftChild = this.callByName(term.LeftChild, true);
             } else if(term.RightChild.Value === "APP") {
-                term.RightChild = this.callByName(term.RightChild);
+                term.RightChild = this.callByName(term.RightChild, true);
             } else {
                 break;
             }
-            this.path.push(term);
+            if(!isRecursive) {
+                //console.log(TreeNode.ToString(term));
+                this.path.push(TreeNode.ToString(term));
+            }
         }
         return term;
     }
 
     calculate(setting) {
-        this.path.push(this.props.input)
+        this.path = [];
         var term = buildTermFromString(this.props.input);
-         
+        this.path.push(TreeNode.ToString(term));
         switch(setting) {
             case "CBN":
                 
                 return (
                     <div>
-                        <TreeNodeComponent treeString={TreeNode.ToString(this.callByName(term))} />
+                        <TreeNodeComponent treeString={TreeNode.ToString(this.callByName(term, false))} />
                     </div>
                  );
                  
@@ -64,9 +68,9 @@ export class AppContainer extends React.Component {
     handleClick(e) {
             const setting = this.props.setting;
             const result = this.calculate(setting);
+            //this.path.forEach(element => console.log("Step: \n" + element));
             const number = 2;
-            const determinism = "False";
-            this.props.onClick(result, number, determinism);
+            this.props.onClick(result, number, this.path);
         }
 
     render() {
