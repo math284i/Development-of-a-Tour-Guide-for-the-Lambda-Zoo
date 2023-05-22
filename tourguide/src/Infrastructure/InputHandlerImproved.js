@@ -34,6 +34,8 @@ export class InputHandler {
                 break;
 
             default: //VAR
+                inputString = inputString.replace(/\(/g, "");
+                inputString = inputString.replace(/\)/g, "");
                 root = new TreeNode(inputString, parent);
                 break;
         }
