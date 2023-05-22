@@ -1,24 +1,24 @@
 import { TreeNode } from "./ImprovedDataStructur";
-import { InputHandler } from "./InputHanlderImproved";
+import { InputHandler } from "./InputHandlerImproved";
 export function buildTermFromString(termString) {
-        let inputHanlder = new InputHandler();    
-        let root = inputHanlder.BuildTreeFromString(termString, null);
-        return TreeNode.ToString(root);
+        let inputHandler = new InputHandler();    
+        let root = inputHandler.BuildTreeFromString(termString, null);
+        return root;
     }
 
 export function substituteInTree(node, parameter, substituteWith) {
-  if(node.value === parameter.value) { //Basecase - If the tree is just a variable equal to parameter
-    node.value = substituteWith;
-  }else if(node.value === "APP") {
-    node.leftChild = substituteInTree(node.leftChild, parameter, substituteWith);
-    node.rightChild = substituteInTree(node.rightChild, parameter, substituteWith);
-  }else if(node.value === "ABS" && node.leftChild.value !== parameter) {
-    node.rightChild = substituteInTree(node.rightChild, parameter, substituteWith);
+  if(node.Value === parameter.Value) { //Basecase - If the tree is just a variable equal to parameter
+    node = substituteWith;
+  }else if(node.Value === "APP") {
+    node.LeftChild = substituteInTree(node.LeftChild, parameter, substituteWith);
+    node.RightChild = substituteInTree(node.RightChild, parameter, substituteWith);
+  }else if(node.Value === "ABS" && node.LeftChild.Value !== parameter) {
+    node.RightChild = substituteInTree(node.RightChild, parameter, substituteWith);
   }
   return node;
 }
 
-
+/*
 let root = new TreeNode("APP", null);
 let left = new TreeNode("ABS", null);
 let leftLeft = new TreeNode("x", null);
@@ -28,23 +28,24 @@ let leftRightRight = new TreeNode("APP", null);
 let leftRightRightLeft = new TreeNode("x", null);
 let leftRightRightRight = new TreeNode("z", null);
       
-leftRightRight.leftChild = leftRightRightLeft;
-leftRightRight.rightChild = leftRightRightRight;
+leftRightRight.LeftChild = leftRightRightLeft;
+leftRightRight.RightChild = leftRightRightRight;
       
-leftRight.leftChild = leftRightLeft;
-leftRight.rightChild = leftRightRight;
+leftRight.LeftChild = leftRightLeft;
+leftRight.RightChild = leftRightRight;
       
-left.leftChild = leftLeft;
-left.rightChild = leftRight;
+left.LeftChild = leftLeft;
+left.RightChild = leftRight;
       
 let right = new TreeNode("ABS", null);
 let rightLeft = new TreeNode("z", null);
 let rightRight = new TreeNode("z", null);
-right.leftChild = rightLeft;
-right.rightChild = rightRight;
+right.LeftChild = rightLeft;
+right.RightChild = rightRight;
       
-root.leftChild = left;
-root.rightChild = right;
+root.LeftChild = left;
+root.RightChild = right;
 
 const test = substituteInTree(leftRight, leftLeft, right);
 console.log('Testing: \n' + TreeNode.ToString(test));
+*/

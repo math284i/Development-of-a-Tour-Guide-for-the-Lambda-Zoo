@@ -23,17 +23,17 @@ export class AppContainer extends React.Component {
     }
 
     callByName(term) {
-        while(term.value === "APP") {
-            if(term.leftChild.value === "ABS") {
-                var func = term.leftChild.rightChild;
-                var parameter = term.leftChild.leftChild;
-                var subs = term.rightChild;
-
+        while(term.Value === "APP") {
+            if(term.LeftChild.Value === "ABS") {
+                var func = term.LeftChild.RightChild;
+                var parameter = term.LeftChild.LeftChild;
+                var subs = term.RightChild;
                 term = substituteInTree(func, parameter, subs);
-            } else if(term.leftChild.value === "APP") {
-                term.leftChild = this.callByName(term.leftChild);
-            } else if(term.rightChild.value === "APP") {
-                term.rightChild = this.callByName(term.rightChild);
+                console.log(TreeNode.ToString(term));
+            } else if(term.LeftChild.Value === "APP") {
+                term.LeftChild = this.callByName(term.LeftChild);
+            } else if(term.RightChild.Value === "APP") {
+                term.RightChild = this.callByName(term.RightChild);
             } else {
                 break;
             }
@@ -48,11 +48,13 @@ export class AppContainer extends React.Component {
          
         switch(setting) {
             case "CBN":
+                
                 return (
                     <div>
-                        <TreeNodeComponent treeString={this.callByName(term)} />
+                        <TreeNodeComponent treeString={TreeNode.ToString(this.callByName(term))} />
                     </div>
                  );
+                 
                 return this.callByName(term);
             default:
                 return "Setting undefined";
