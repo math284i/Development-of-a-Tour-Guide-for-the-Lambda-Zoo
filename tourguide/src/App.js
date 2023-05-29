@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { AppContainer } from './AppContainer';
 import { Input } from './Input';
 import { Setting } from './Setting';
@@ -9,7 +9,11 @@ import { ReductionSequence } from "./ReductionSequence";
 function App() {
 
   const [ result, setResult ] = useState('');
+
+
   const [ input, setInput ] = useState('');
+  const inputRef = useRef(null);
+
   const [ setting, setSetting ] = useState('CBN');
   const [ custom, setCustom ] = useState('');
   const [ nrSteps, setNrSteps ] = useState();
@@ -42,15 +46,19 @@ function App() {
     //console.log(custom);
   }
 
+  function handleClick() {
+    inputRef.current.focus();
+  }
+
   return (
     <div className="App">
       <div className="Upper">
         <h1 className="title is-1">Lamda Zoo Tour Guide</h1>
         <div>
           <div>
-            <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>
+            <button className="button is-normal is-light" onClick={handleClick}>λ</button>
           </div>
-          <Input value={input} onChange={updateInput} />
+          <Input ref={inputRef} value={input} onChange={updateInput} />
         </div>
         <div className="SecondUpper">
           <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>
