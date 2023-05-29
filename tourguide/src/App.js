@@ -17,12 +17,12 @@ function App() {
   const [ setting, setSetting ] = useState('CBN');
   const [ custom, setCustom ] = useState('');
   const [ nrSteps, setNrSteps ] = useState();
-  const [ determinism, setDeterminism ] = useState('');
+  const [ path, setPath ] = useState([]);
 
-  const updateResult = (resultUpdate, nrStepsUpdate, determinismUpdate) => {
+  const updateResult = (resultUpdate, nrStepsUpdate, pathUpdate) => {
     setResult(resultUpdate);
     setNrSteps(nrStepsUpdate);
-    setDeterminism(determinismUpdate);
+    setPath(pathUpdate);
   }
   const updateInput = (update) => {
     setInput(update);
@@ -75,10 +75,10 @@ function App() {
       </div>
       <div className="Lower">
         <div className="Result">
-          <ReductionSequence />
+          <ReductionSequence path={path} />
         </div>
         <div className="Stats">
-          <Stats nrSteps={nrSteps} determinism={determinism} result={result}/>
+          <Stats nrSteps={nrSteps} result={result}/>
         </div>
       </div>
     </div>

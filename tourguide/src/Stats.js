@@ -8,7 +8,6 @@ export class Stats extends React.Component {
         <div>
             <h2 className="title is-2">Stats</h2>
             <h2 className="title is-3">Number of steps: {this.props.nrSteps}</h2>
-            <h2 className="title is-3">Determinism: {this.props.determinism}</h2>
             <h2 className="title is-3">Result: {this.props.result}</h2>
         </div>
         );
