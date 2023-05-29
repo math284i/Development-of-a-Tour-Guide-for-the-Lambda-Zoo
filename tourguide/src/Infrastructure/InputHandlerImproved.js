@@ -67,4 +67,20 @@ export class InputHandler {
         }
         return [output, index];
     }
+
+
+    BuildStringFromTree(root) {
+        let outputString = "";
+        outputString += (() => {
+            switch (root.Value) {
+                case "APP":
+                    return `(${this.BuildStringFromTree(root.LeftChild)}${this.BuildStringFromTree(root.RightChild)})`;
+                case "ABS":
+                    return `(λ${this.BuildStringFromTree(root.LeftChild)}.${this.BuildStringFromTree(root.RightChild)})`;
+                default:
+                    return root.Value;
+            }
+        })();
+        return outputString;
+    }
 }

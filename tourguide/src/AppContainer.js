@@ -4,6 +4,9 @@ import "./App.css";
 import 'bulma/css/bulma.css';
 import { buildTermFromString, substituteInTree } from "./Infrastructure/InputHandler.js"
 import { TreeNode } from "./Infrastructure/ImprovedDataStructur";
+import { InputHandler } from "./Infrastructure/InputHandlerImproved";
+
+export const inputHandler = new InputHandler();
 
 export const TreeNodeComponent = ({ treeString }) => {
     return (
@@ -23,7 +26,7 @@ export class AppContainer extends React.Component {
     callByName(term, isRecursive) {
         if(term.Value === "ABS" && term.RightChild.Value === "APP") {
             term.RightChild = this.callByName(term.RightChild, true);
-            this.path.push(TreeNode.ToString(term));
+            this.path.push(inputHandler.BuildStringFromTree(term));
         }
         while(term.Value === "APP") {
             if(term.LeftChild.Value === "ABS") {
@@ -40,7 +43,7 @@ export class AppContainer extends React.Component {
             }
             if(!isRecursive) {
                 //console.log(TreeNode.ToString(term));
-                this.path.push(TreeNode.ToString(term));
+                this.path.push(inputHandler.BuildStringFromTree(term));
             }
         }
         return term;
@@ -49,9 +52,11 @@ export class AppContainer extends React.Component {
     calculate(setting) {
         this.path = [];
         var term = buildTermFromString(this.props.input);
-        this.path.push(TreeNode.ToString(term));
+        this.path.push(inputHandler.BuildStringFromTree(term));
         switch(setting) {
             case "CBN":
+                var term = inputHandler.BuildStringFromTree(this.callByName(term, false));
+               return term;
                 
                 return (
                     <div>
@@ -69,7 +74,7 @@ export class AppContainer extends React.Component {
             const setting = this.props.setting;
             const result = this.calculate(setting);
             //this.path.forEach(element => console.log("Step: \n" + element));
-            const number = 2;
+            const number = this.path.length;
             this.props.onClick(result, number, this.path);
         }
 

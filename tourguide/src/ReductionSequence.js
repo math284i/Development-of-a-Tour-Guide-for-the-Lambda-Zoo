@@ -9,12 +9,15 @@ export class ReductionSequence extends React.Component {
 
     render() {
         return (
-        <div>
-          <h2 className="title is-2">Reduction Sequence</h2>
-          {this.props.path.map(function(object, i){
-            return <TreeNodeComponent treeString={object} key={i} />
-          })}
-        </div>
+          <div>
+            <h2 className="title is-2">Reduction Sequence</h2>
+            {this.props.path.map((step, index) => (
+              <div key={index}>
+                <h3>Step {index + 1}</h3>
+                {step}
+              </div>
+            ))}
+          </div>
         );
     }
 }

@@ -56,7 +56,7 @@ function App() {
         <h1 className="title is-1">Lamda Zoo Tour Guide</h1>
         <div>
           <div>
-            <button className="button is-normal is-light" onClick={handleClick}>λ</button>
+            <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>
           </div>
           <Input ref={inputRef} value={input} onChange={updateInput} />
         </div>
