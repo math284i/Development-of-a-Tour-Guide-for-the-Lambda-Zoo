@@ -1,7 +1,7 @@
-import { TreeNode } from "./ImprovedDataStructur";
-import { InputHandler } from "./InputHandlerImproved";
+import { TreeNode } from "./DataStructur";
+import { Converter } from "./Converter";
 export function buildTermFromString(termString) {
-        let inputHandler = new InputHandler();    
+        let inputHandler = new Converter();    
         let root = inputHandler.BuildTreeFromString(termString, null);
         return root;
     }

@@ -1,6 +1,6 @@
-import { TreeNode } from "./ImprovedDataStructur";
+import { TreeNode } from "./DataStructur";
 
-export class InputHandler {
+export class Converter {
     BuildTreeFromString(inputString, parent) {
         let root;
         let index = inputString.length > 1 ? 1 : 0;
@@ -67,7 +67,6 @@ export class InputHandler {
         }
         return [output, index];
     }
-
 
     BuildStringFromTree(root) {
         let outputString = "";

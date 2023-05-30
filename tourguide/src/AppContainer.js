@@ -2,11 +2,11 @@ import React from "react";
 import { Fragment } from "react";
 import "./App.css";
 import 'bulma/css/bulma.css';
-import { buildTermFromString, substituteInTree } from "./Infrastructure/InputHandler.js"
-import { TreeNode } from "./Infrastructure/ImprovedDataStructur";
-import { InputHandler } from "./Infrastructure/InputHandlerImproved";
+import { buildTermFromString, substituteInTree } from "./Infrastructure/DataStructurHelper.js"
+import { TreeNode } from "./Infrastructure/DataStructur";
+import { Converter } from "./Infrastructure/Converter";
 
-export const inputHandler = new InputHandler();
+export const inputHandler = new Converter();
 
 export const TreeNodeComponent = ({ treeString }) => {
     return (
