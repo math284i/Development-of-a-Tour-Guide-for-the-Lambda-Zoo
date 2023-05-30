@@ -39,12 +39,24 @@ function App() {
   }
 
   const addSymbolToInput = (symbol) => {
-    setInput(prevInput => prevInput + symbol);
+    const input = inputRef.current;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+    const value = input.value;
+    const newValue = value.substring(0, start) + symbol + value.substring(end);
+
+    setInput(prevInput => newValue);
     setFocus(inputRef);
     //console.log(input);
   }
   const addSymbolToCustom = (symbol) => {
-    setCustom(prevCustom => prevCustom + symbol);
+    const input = settingRef.current;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+    const value = input.value;
+    const newValue = value.substring(0, start) + symbol + value.substring(end);
+    
+    setCustom(prevCustom => newValue);
     setFocus(settingRef);
     //console.log(custom);
   }
