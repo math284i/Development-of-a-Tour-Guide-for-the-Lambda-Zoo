@@ -28,7 +28,7 @@ export class Setting extends React.Component {
                     <option>Custom</option>
                 </select>
             </div>
-            <input className="input is-small" value={this.props.value} placeholder={`Enter custom reduction sequence`} onChange={this.handleCustomChange} style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}} />
+            <input className="input is-small" ref={this.props.reference} value={this.props.value} placeholder={`Enter custom reduction sequence`} onChange={this.handleCustomChange} style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}} />
         </div>
         );
     }

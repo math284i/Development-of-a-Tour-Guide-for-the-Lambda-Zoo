@@ -13,6 +13,7 @@ function App() {
 
   const [ input, setInput ] = useState('');
   const inputRef = useRef(null);
+  const settingRef = useRef(null);
 
   const [ setting, setSetting ] = useState('CBN');
   const [ custom, setCustom ] = useState('');
@@ -39,15 +40,17 @@ function App() {
 
   const addSymbolToInput = (symbol) => {
     setInput(prevInput => prevInput + symbol);
+    setFocus(inputRef);
     //console.log(input);
   }
   const addSymbolToCustom = (symbol) => {
     setCustom(prevCustom => prevCustom + symbol);
+    setFocus(settingRef);
     //console.log(custom);
   }
 
-  function handleClick() {
-    inputRef.current.focus();
+  function setFocus(ref) {
+    ref.current.focus();
   }
 
   return (
@@ -58,7 +61,7 @@ function App() {
           <div>
             <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>
           </div>
-          <Input ref={inputRef} value={input} onChange={updateInput} />
+          <Input reference={inputRef} value={input} onChange={updateInput} placeHolderText="Enter lambda term" />
         </div>
         <div className="SecondUpper">
           <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>
@@ -67,7 +70,7 @@ function App() {
             <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↓")}>↓</button>
             <button className="button is-normal is-light" onClick={() => addSymbolToCustom("β")}>β</button>
           </div>
-          <Setting label="Reduce using:" setting={setting} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
+          <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
           <div className="SecondUpperChild">
             <AppContainer input={input} setting={setting} onClick={updateResult}/>
           </div>
