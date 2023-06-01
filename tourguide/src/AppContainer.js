@@ -5,8 +5,14 @@ import 'bulma/css/bulma.css';
 import { buildTermFromString, substituteInTree } from "./Infrastructure/DataStructurHelper.js"
 import { TreeNode } from "./Infrastructure/DataStructur";
 import { Converter } from "./Infrastructure/Converter";
+import { CustomRules } from "./Infrastructure/CustomRules";
 
+<<<<<<< HEAD
 export const converter = new Converter();
+=======
+export const inputHandler = new Converter();
+export const customRules = new CustomRules();
+>>>>>>> 0cfaee045c5262b6d3841ded928d56849ad21e80
 
 export const TreeNodeComponent = ({ treeString }) => {
     return (
@@ -15,6 +21,11 @@ export const TreeNodeComponent = ({ treeString }) => {
       </pre>
     );
   };
+    //return (
+    //  <div>
+    //    <TreeNodeComponent treeString={TreeNode.ToString(this.callByName(term, false))} />
+    //  </div>
+    //);
 
 export class AppContainer extends React.Component {
     constructor(props) {
@@ -49,6 +60,39 @@ export class AppContainer extends React.Component {
         return term;
     }
 
+    ExecuteCustomRule(term, rules) {
+        for (let rule of rules) {
+            term = this.CustomRulesHelper(term, rule);
+        };
+        return term;
+    }
+
+    CustomRulesHelper(term, element) {
+        switch (element) {
+            case "↙":
+                return customRules.LeftArrowFunction(term);
+
+            case "↘":
+                return customRules.RightArrowFunction(term);
+
+            case "↓":
+                return customRules.DownArrowFunction(term);
+
+            case "β":
+                return customRules.BetaFunction(term);
+
+            case "∪":
+                return customRules.UnionFunction(term);
+
+            case "𝄇":
+                return customRules.RepeatFunction(term);
+
+            default:
+                console.log("something went wrong in customRulesHelper");
+                return "something went wrong";
+        }
+    }
+
     calculate(setting) {
         this.path = [];
         var term = buildTermFromString(this.props.input);
@@ -57,14 +101,12 @@ export class AppContainer extends React.Component {
             case "CBN":
                 var term = converter.BuildStringFromTree(this.callByName(term, false));
                return term;
-                
-                return (
-                    <div>
-                        <TreeNodeComponent treeString={TreeNode.ToString(this.callByName(term, false))} />
-                    </div>
-                 );
-                 
-                return this.callByName(term);
+
+            case "Custom":
+                const rules = this.props.custom;
+                var term = inputHandler.BuildStringFromTree(this.ExecuteCustomRule(term, rules));
+                return term;
+
             default:
                 return "Setting undefined";
         }
