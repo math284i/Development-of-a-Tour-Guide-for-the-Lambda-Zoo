@@ -85,12 +85,12 @@ function App() {
         </div>
         <div className="SecondUpper">
           <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>
-            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↙")}>↙</button>
-            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↘")}>↘</button>
-            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("↓")}>↓</button>
-            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("β")}>β</button>
-            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("∪")}>∪</button>
-            <button className="button is-normal is-light" onClick={() => addSymbolToCustom("𝄇")}>𝄇</button>
+            <button className="button is-normal is-light" title="Left" onClick={() => addSymbolToCustom("↙")}>↙</button>
+            <button className="button is-normal is-light" title="Right" onClick={() => addSymbolToCustom("↘")}>↘</button>
+            <button className="button is-normal is-light" title="Down" onClick={() => addSymbolToCustom("↓")}>↓</button>
+            <button className="button is-normal is-light" title="Beta" onClick={() => addSymbolToCustom("β")}>β</button>
+            <button className="button is-normal is-light" title="Union" onClick={() => addSymbolToCustom("∪")}>∪</button>
+            <button className="button is-normal is-light" title="Repeat" onClick={() => addSymbolToCustom("𝄇")}>𝄇</button>
           </div>
           <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
           <div className="SecondUpperChild">

@@ -7,12 +7,8 @@ import { TreeNode } from "./Infrastructure/DataStructur";
 import { Converter } from "./Infrastructure/Converter";
 import { CustomRules } from "./Infrastructure/CustomRules";
 
-<<<<<<< HEAD
 export const converter = new Converter();
-=======
-export const inputHandler = new Converter();
 export const customRules = new CustomRules();
->>>>>>> 0cfaee045c5262b6d3841ded928d56849ad21e80
 
 export const TreeNodeComponent = ({ treeString }) => {
     return (
@@ -104,7 +100,7 @@ export class AppContainer extends React.Component {
 
             case "Custom":
                 const rules = this.props.custom;
-                var term = inputHandler.BuildStringFromTree(this.ExecuteCustomRule(term, rules));
+                var term = converter.BuildStringFromTree(this.ExecuteCustomRule(term, rules));
                 return term;
 
             default:
