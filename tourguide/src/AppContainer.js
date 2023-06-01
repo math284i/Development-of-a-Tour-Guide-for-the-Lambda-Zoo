@@ -6,7 +6,7 @@ import { buildTermFromString, substituteInTree } from "./Infrastructure/DataStru
 import { TreeNode } from "./Infrastructure/DataStructur";
 import { Converter } from "./Infrastructure/Converter";
 
-export const inputHandler = new Converter();
+export const converter = new Converter();
 
 export const TreeNodeComponent = ({ treeString }) => {
     return (
@@ -26,7 +26,7 @@ export class AppContainer extends React.Component {
     callByName(term, isRecursive) {
         if(term.Value === "ABS" && term.RightChild.Value === "APP") {
             term.RightChild = this.callByName(term.RightChild, true);
-            this.path.push(inputHandler.BuildStringFromTree(term));
+            this.path.push(converter.BuildStringFromTree(term));
         }
         while(term.Value === "APP") {
             if(term.LeftChild.Value === "ABS") {
@@ -43,7 +43,7 @@ export class AppContainer extends React.Component {
             }
             if(!isRecursive) {
                 //console.log(TreeNode.ToString(term));
-                this.path.push(inputHandler.BuildStringFromTree(term));
+                this.path.push(converter.BuildStringFromTree(term));
             }
         }
         return term;
@@ -52,10 +52,10 @@ export class AppContainer extends React.Component {
     calculate(setting) {
         this.path = [];
         var term = buildTermFromString(this.props.input);
-        this.path.push(inputHandler.BuildStringFromTree(term));
+        this.path.push(converter.BuildStringFromTree(term));
         switch(setting) {
             case "CBN":
-                var term = inputHandler.BuildStringFromTree(this.callByName(term, false));
+                var term = converter.BuildStringFromTree(this.callByName(term, false));
                return term;
                 
                 return (

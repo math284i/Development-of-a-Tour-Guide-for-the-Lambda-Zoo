@@ -7,13 +7,12 @@ import './App.css';
 import { ReductionSequence } from "./ReductionSequence";
 
 function App() {
-
   const [ result, setResult ] = useState('');
-
-
   const [ input, setInput ] = useState('');
+
   const inputRef = useRef(null);
   const settingRef = useRef(null);
+  const cursorPositionRef = useRef(0);
 
   const [ setting, setSetting ] = useState('CBN');
   const [ custom, setCustom ] = useState('');
@@ -25,44 +24,53 @@ function App() {
     setNrSteps(nrStepsUpdate);
     setPath(pathUpdate);
   }
+
   const updateInput = (update) => {
     setInput(update);
-    //console.log(update);
   }
+
   const updateSetting = (update) => {
     setSetting(update);
-    //console.log(update);
   }
+
   const updateCustom = (update) => {
     setCustom(update);
-    //console.log(update);
   }
 
   const addSymbolToInput = (symbol) => {
-    const input = inputRef.current;
-    const start = input.selectionStart;
-    const end = input.selectionEnd;
-    const value = input.value;
-    const newValue = value.substring(0, start) + symbol + value.substring(end);
-
-    setInput(prevInput => newValue);
-    setFocus(inputRef);
-    //console.log(input);
+    addSymbols(symbol, inputRef, setInput);
   }
+
   const addSymbolToCustom = (symbol) => {
-    const input = settingRef.current;
+    addSymbols(symbol, settingRef, setCustom);
+  }
+
+  const addSymbols = (symbol, ref, setFunction) => {
+    const input = ref.current;
     const start = input.selectionStart;
     const end = input.selectionEnd;
     const value = input.value;
     const newValue = value.substring(0, start) + symbol + value.substring(end);
-    
-    setCustom(prevCustom => newValue);
-    setFocus(settingRef);
-    //console.log(custom);
+
+    cursorPositionRef.current = start + symbol.length;
+    console.log("inAddSymbols courserPos: " + cursorPositionRef.current);
+
+    setFunction(newValue);
+    setFocus(ref);
   }
 
-  function setFocus(ref) {
+  const setFocus = (ref) => {
     ref.current.focus();
+  }
+
+  const handleFocus = () => {
+    console.log("cursorPositonCurrent: " + cursorPositionRef.current);
+    
+    inputRef.current.selectionStart = cursorPositionRef.current;
+    inputRef.current.selectionEnd = cursorPositionRef.current;
+
+    console.log("inputRefCurrent: " + inputRef.current.selectionStart);
+    console.log("inputRefEnd: " + inputRef.current.selectionEnd);
   }
 
   return (
@@ -73,7 +81,7 @@ function App() {
           <div>
             <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>
           </div>
-          <Input reference={inputRef} value={input} onChange={updateInput} placeHolderText="Enter lambda term" />
+          <Input handleFocus={handleFocus} reference={inputRef} value={input} onChange={updateInput} placeHolderText="Enter lambda term" />
         </div>
         <div className="SecondUpper">
           <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>

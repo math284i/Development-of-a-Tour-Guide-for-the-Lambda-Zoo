@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 
 export class Input extends React.Component {
@@ -16,7 +16,7 @@ export class Input extends React.Component {
     render() {
         return (
         <div className="control">
-            <input ref={this.props.reference} placeholder={this.placeHolderText} className="input" value={this.props.value} onChange={this.handleChange}/>
+            <input onFocus={this.props.handleFocus} ref={this.props.reference} placeholder={this.placeHolderText} className="input" value={this.props.value} onChange={this.handleChange}/>
         </div>
         );
     }
