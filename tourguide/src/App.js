@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Upper">
+      <div className="UpperDiv">
         <h1 className="title is-1">Lamda Zoo Tour Guide</h1>
         <div>
           <div>
@@ -83,7 +83,7 @@ function App() {
           </div>
           <Input handleFocus={handleFocus} reference={inputRef} value={input} onChange={updateInput} placeHolderText="Enter lambda term" />
         </div>
-        <div className="SecondUpper">
+        <div className="OptionsDiv">
           <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>
             <button className="button is-normal is-light" title="Left" onClick={() => addSymbolToCustom("↙")}>↙</button>
             <button className="button is-normal is-light" title="Right" onClick={() => addSymbolToCustom("↘")}>↘</button>
@@ -94,16 +94,16 @@ function App() {
 
           </div>
           <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
-          <div className="SecondUpperChild">
+          <div className="OptionElements">
             <AppContainer input={input} custom={custom} setting={setting} onClick={updateResult}/>
           </div>
         </div>
       </div>
-      <div className="Lower">
-        <div className="Result">
+      <div className="LowerDiv">
+        <div className="SequenceDiv">
           <ReductionSequence path={path} />
         </div>
-        <div className="Stats">
+        <div className="StatsDiv">
           <Stats nrSteps={nrSteps} result={result}/>
         </div>
       </div>

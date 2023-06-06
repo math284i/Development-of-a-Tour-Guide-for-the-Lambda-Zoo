@@ -99,8 +99,8 @@ export class AppContainer extends React.Component {
                return term;
 
             case "Custom":
-                const rules = this.props.custom;
-                var term = converter.BuildStringFromTree(this.ExecuteCustomRule(term, rules));
+                const phasedStrategy = this.props.custom.split(";");
+                //var term = converter.BuildStringFromTree(this.ExecuteCustomRule(term, rules));
                 return term;
 
             default:
@@ -112,7 +112,7 @@ export class AppContainer extends React.Component {
             const setting = this.props.setting;
             const result = this.calculate(setting);
             //this.path.forEach(element => console.log("Step: \n" + element));
-            const number = this.path.length;
+            const number = this.path.length - 1;
             this.props.onClick(result, number, this.path);
         }
 
