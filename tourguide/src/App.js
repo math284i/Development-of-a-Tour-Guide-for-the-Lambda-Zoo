@@ -91,6 +91,7 @@ function App() {
             <button className="button is-normal is-light" title="Beta" onClick={() => addSymbolToCustom("β")}>β</button>
             <button className="button is-normal is-light" title="Union" onClick={() => addSymbolToCustom("∪")}>∪</button>
             <button className="button is-normal is-light" title="Repeat" onClick={() => addSymbolToCustom("𝄇")}>𝄇</button>
+
           </div>
           <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
           <div className="SecondUpperChild">

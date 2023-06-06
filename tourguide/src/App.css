@@ -85,6 +85,30 @@ body::-webkit-scrollbar {
   width: 80% !important;
 }
 
+.SavedCustomDropDown {
+  width: 80% !important;
+}
+
+.SaveCustom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+
+.SaveCustomLeft {
+  margin-left: 7%;
+}
+
+.SaveCustomRight {
+  margin-right: 10%;
+}
+
+
+
+
+
+
 .title.is-1 {
   margin-top: 1% !important;
 }
