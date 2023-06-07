@@ -10,8 +10,11 @@ body::-webkit-scrollbar {
 .UpperDiv {
   text-align: center;
   height: 40%;
-  width: 100%;
-  /*border: 2px solid black;*/
+  width: 95.5%;
+
+  box-shadow: -2px 0 10px 2px #333333;
+  border-radius: 10px;
+  margin:15px;
 }
 
 .LowerDiv {
@@ -22,18 +25,21 @@ body::-webkit-scrollbar {
 .SequenceDiv {
   float: left;
   height: 100%;
-  width: 70%;
-  border-top: 2px solid black;
-  border-right: 2px solid black;
-  /*border: 2px solid black;*/
+  width: 60%;
+
+  box-shadow: -2px 0 10px 2px #333333;
+  border-radius: 10px;
+  margin: 15px;
 }
 
 .StatsDiv {
   float: left;
   height: 100%;
-  width: 30%;
-  border-top: 2px solid black;
-  /*border: 2px solid black;*/
+  width: 33.5%;
+
+  box-shadow: -2px 0 10px 2px #333333;
+  border-radius: 10px;
+  margin: 15px;
 }
 
 .OptionsDiv { /* Responsible for the settings-panel, including its hidden buttons and fields, as well as the generate button */
@@ -55,7 +61,13 @@ body::-webkit-scrollbar {
   grid-template-columns: 1fr 1fr;
   float: left;
 }
+/*
 
+body :not(.UpperDiv):not(.SequenceDiv):not(.StatsDiv) :not(.OptionsDiv) :not(.OptionElements) :not(.ButtonDiv) {
+  background-color: blue;
+}
+
+*/
 
 .SavedCustomDropDown {
   width: 80% !important;
@@ -121,12 +133,6 @@ body::-webkit-scrollbar {
   margin-right: 10%;
 }
 
-.CenteredDialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 
 .title.is-1 {
@@ -141,4 +147,14 @@ body::-webkit-scrollbar {
 .title.is-3 {
   margin-top: 5% !important;
   margin-left: 10px !important;
+}
+
+.title.is-4 {
+  margin-left: 10px !important;
+}
+
+.title.is-5 {
+  margin-top: -2.5% !important;
+  margin-left: 10px !important;
+  margin-bottom: 2.5% !important;
 }
