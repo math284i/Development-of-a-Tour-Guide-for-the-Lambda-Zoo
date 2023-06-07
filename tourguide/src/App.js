@@ -93,7 +93,7 @@ function App() {
             <button className="button is-normal is-light" title="Repeat" onClick={() => addSymbolToCustom("𝄇")}>𝄇</button>
 
           </div>
-          <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
+          <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom}/>
           <div className="SecondUpperChild">
             <AppContainer input={input} custom={custom} setting={setting} onClick={updateResult}/>
           </div>
