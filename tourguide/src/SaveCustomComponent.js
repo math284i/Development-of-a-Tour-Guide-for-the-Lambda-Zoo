@@ -54,7 +54,7 @@ export default function SettingComponent(props) {
               </div>
             </div>
             <div className="SaveCustomRight">
-            <button className="button is-normal is-light" title="Save" onClick={() => handleSaveCustomRule()}>Save</button>
+            <button className="button is-normal is-light" id="saveButton" title="Save" onClick={() => handleSaveCustomRule()}>Save</button>
             </div>
           </div>
         </div>
