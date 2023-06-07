@@ -34,9 +34,11 @@ export default function SettingComponent(props) {
 
     const handleSaveCustomRule = () => {
         let name = prompt("Give a name to ur strategy \n" + props.value)
-        const newValue = {label: name, value: props.value};
-        setDropdownItems(dropdownItems => [...dropdownItems, newValue]);
-        setSelectedValue(newValue);
+        if (name !== null) {
+          const newValue = {label: name, value: props.value};
+          setDropdownItems(dropdownItems => [...dropdownItems, newValue]);
+          setSelectedValue(newValue);
+        }
     };
 
     return (
