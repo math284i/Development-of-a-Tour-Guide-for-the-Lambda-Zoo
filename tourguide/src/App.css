@@ -7,19 +7,19 @@ body::-webkit-scrollbar {
   width: 100vw;
 }
 
-.Upper {
+.UpperDiv {
   text-align: center;
   height: 40%;
   width: 100%;
   /*border: 2px solid black;*/
 }
 
-.Lower {
+.LowerDiv {
   height: 60%;
   width: 100%;
 }
 
-.Result {
+.SequenceDiv {
   float: left;
   height: 100%;
   width: 70%;
@@ -28,7 +28,7 @@ body::-webkit-scrollbar {
   /*border: 2px solid black;*/
 }
 
-.Stats {
+.StatsDiv {
   float: left;
   height: 100%;
   width: 30%;
@@ -36,13 +36,13 @@ body::-webkit-scrollbar {
   /*border: 2px solid black;*/
 }
 
-.SecondUpper {
+.OptionsDiv { /* Responsible for the settings-panel, including its hidden buttons and fields, as well as the generate button */
   display: inline-block;
   width: 80%;
   /*border: 2px solid black;*/
 }
 
-.SecondUpperChild {
+.OptionElements {
   float: left;
   height: 100%;
   width: 40%;
@@ -54,6 +54,26 @@ body::-webkit-scrollbar {
   display: grid;
   grid-template-columns: 1fr 1fr;
   float: left;
+}
+
+
+.SavedCustomDropDown {
+  width: 80% !important;
+}
+
+.SaveCustom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+
+.SaveCustomLeft {
+  margin-left: 7%;
+}
+
+.SaveCustomRight {
+  margin-right: 10%;
 }
 
 .button.is-primary {

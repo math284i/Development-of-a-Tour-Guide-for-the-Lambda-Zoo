@@ -27,7 +27,7 @@ export class Setting extends React.Component {
 
     render() {
         return (
-        <div className="SecondUpperChild">
+        <div className="OptionElements">
             <label className="label">{this.props.label}</label>
             <div className="select is-fullwidth">
                 <select onChange={this.handleSettingChange}>
