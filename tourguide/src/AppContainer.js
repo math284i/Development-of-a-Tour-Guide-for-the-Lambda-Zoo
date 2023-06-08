@@ -1,5 +1,4 @@
 import React from "react";
-import { Fragment } from "react";
 import "./App.css";
 import 'bulma/css/bulma.css';
 import { buildTermFromString, substituteInTree } from "./Infrastructure/DataStructurHelper.js"
@@ -84,10 +83,11 @@ export class AppContainer extends React.Component {
     }
 
     CustomRulesHelper(term, element, phasedStrategy) {
+        var recurse;
         switch (element) {
             case "↙𝄇":
                 if(term.Value === "APP") {
-                    var recurse = this.ExecuteCustomRule(term.LeftChild, phasedStrategy, false);
+                    recurse = this.ExecuteCustomRule(term.LeftChild, phasedStrategy, false);
                     if(recurse !== false) {
                         term.LeftChild = recurse;
                         return term;
@@ -97,7 +97,7 @@ export class AppContainer extends React.Component {
 
             case "↘𝄇":
                 if(term.Value === "APP") {
-                    var recurse = this.ExecuteCustomRule(term.RightChild, phasedStrategy, false);
+                    recurse = this.ExecuteCustomRule(term.RightChild, phasedStrategy, false);
                     if(recurse !== false) {
                         term.RightChild = recurse;
                         return term;
@@ -107,7 +107,7 @@ export class AppContainer extends React.Component {
 
             case "↓𝄇":
                 if(term.Value === "ABS") {
-                    var recurse = this.ExecuteCustomRule(term.RightChild, phasedStrategy, false);
+                    recurse = this.ExecuteCustomRule(term.RightChild, phasedStrategy, false);
                     if(recurse !== false) {
                         term.RightChild = recurse;
                         return term;
@@ -138,8 +138,12 @@ export class AppContainer extends React.Component {
                return result;
 
             case "Custom":
-                var phasedStrategy = this.props.custom.split(";");
-                result = converter.BuildStringFromTree(this.ExecuteCustomRule(term, phasedStrategy, true));
+                if(this.props.custom.length === 0) {
+                    result = converter.BuildStringFromTree(term);
+                }else {
+                    var phasedStrategy = this.props.custom.split(";");
+                    result = converter.BuildStringFromTree(this.ExecuteCustomRule(term, phasedStrategy, true));
+                }
                 return result;
 
             default:
