@@ -26,6 +26,7 @@ export class AppContainer extends React.Component {
     constructor(props) {
         super(props);
         this.path = [];
+        this.validPhases = ["↙𝄇","↘𝄇","↓𝄇","β","∪"]
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -58,12 +59,14 @@ export class AppContainer extends React.Component {
     */
 
     ExecuteCustomRule(term, phasedStrategy, loop) {
-        do {
+        repeatloop: do {
             var result;
             var flag = 0;
             for(let phase of phasedStrategy) {
                 result = this.CustomRulesHelper(term, phase, phasedStrategy);
-                if(!result) {
+                if(result === "Error") {
+                    break repeatloop;
+                }else if(!result) {
                     flag++;
                 }else {
                     term = result;
@@ -125,7 +128,7 @@ export class AppContainer extends React.Component {
 
             default:
                 console.log("something went wrong in customRulesHelper");
-                return "something went wrong";
+                return "Error"
         }
     }
 
@@ -152,6 +155,12 @@ export class AppContainer extends React.Component {
                     result = converter.BuildStringFromTree(term);
                 }else {
                     var phasedStrategy = this.props.custom.split(";");
+                    for(let phase of phasedStrategy) {
+                        if(!this.validPhases.includes(phase)) {
+                            alert("Please enter a valid phased strategy. Valid phases are: " + this.validPhases.toString());
+                            return converter.BuildStringFromTree(term);;
+                        }
+                    }
                     result = converter.BuildStringFromTree(this.ExecuteCustomRule(term, phasedStrategy, true));
                 }
                 return result;
