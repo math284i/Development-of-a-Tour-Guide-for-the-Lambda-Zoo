@@ -14,7 +14,6 @@ function App() {
 
   const inputRef = useRef(null);
   const settingRef = useRef(null);
-  const cursorPositionRef = useRef(0);
 
   const [ setting, setSetting ] = useState(strategies[0]);
   const [ custom, setCustom ] = useState('');
@@ -54,9 +53,6 @@ function App() {
     const value = input.value;
     const newValue = value.substring(0, start) + symbol + value.substring(end);
 
-    cursorPositionRef.current = start + symbol.length;
-    console.log("inAddSymbols courserPos: " + cursorPositionRef.current);
-
     setFunction(newValue);
     setFocus(ref);
   }
@@ -65,15 +61,6 @@ function App() {
     ref.current.focus();
   }
 
-  const handleFocus = () => {
-    console.log("cursorPositonCurrent: " + cursorPositionRef.current);
-    
-    inputRef.current.selectionStart = cursorPositionRef.current;
-    inputRef.current.selectionEnd = cursorPositionRef.current;
-
-    console.log("inputRefCurrent: " + inputRef.current.selectionStart);
-    console.log("inputRefEnd: " + inputRef.current.selectionEnd);
-  }
 
   return (
     <div className="App">
@@ -83,7 +70,7 @@ function App() {
           <div>
             <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>
           </div>
-          <Input handleFocus={handleFocus} reference={inputRef} value={input} onChange={updateInput} placeHolderText="Enter lambda term" />
+          <Input reference={inputRef} value={input} onChange={updateInput} placeHolderText="Enter lambda term" />
         </div>
         <div className="OptionsDiv">
           <div className="ButtonDiv" style={{visibility: setting === "Custom" ? 'visible' : 'hidden'}}>

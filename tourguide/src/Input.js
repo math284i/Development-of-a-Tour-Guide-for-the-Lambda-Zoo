@@ -17,8 +17,7 @@ export class Input extends React.Component {
     render() {
         return (
         <div className="control">
-            
-            <input onFocus={this.props.handleFocus} ref={this.props.reference} placeholder={this.placeHolderText} className="input" id="large-input" value={this.props.value} onChange={this.handleChange}/>
+            <input ref={this.props.reference} placeholder={this.placeHolderText} className="input" id="large-input" value={this.props.value} onChange={this.handleChange}/>
         </div>
         );
     }
