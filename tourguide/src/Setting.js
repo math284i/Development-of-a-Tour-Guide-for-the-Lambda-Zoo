@@ -32,8 +32,9 @@ export class Setting extends React.Component {
             <label className="label">{this.props.label}</label>
             <div className="select is-fullwidth">
                 <select onChange={this.handleSettingChange}>
-                    <option>CBN</option>
-                    <option>Custom</option>
+                    {this.props.strats.map((strategy, index) => (
+                        <option key={index+1}>{strategy}</option>
+                    ))}
                 </select>
             </div>
             <div style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}}>
