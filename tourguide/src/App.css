@@ -37,7 +37,7 @@ body::-webkit-scrollbar {
 .StatsDiv {
   float: left;
   height: 88%;
-  width: 36.875%;
+  width: 36%;
 
   box-shadow: -2px 0 10px 2px #333333;
   border-radius: 10px;
