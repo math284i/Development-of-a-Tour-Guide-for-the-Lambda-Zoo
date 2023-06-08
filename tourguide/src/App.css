@@ -11,7 +11,7 @@ body::-webkit-scrollbar {
 
 .UpperDiv {
   text-align: center;
-  height: 40%;
+  height: 42%;
   width: 98.5%;
 
   box-shadow: -2px 0 10px 2px #333333;
@@ -26,7 +26,7 @@ body::-webkit-scrollbar {
 
 .SequenceDiv {
   float: left;
-  height: 88%;
+  height: 85%;
   width: 60%;
 
   box-shadow: -2px 0 10px 2px #333333;
@@ -36,7 +36,7 @@ body::-webkit-scrollbar {
 
 .StatsDiv {
   float: left;
-  height: 88%;
+  height: 85%;
   width: 36%;
 
   box-shadow: -2px 0 10px 2px #333333;
