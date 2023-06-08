@@ -7,7 +7,7 @@ import './App.css';
 import { ReductionSequence } from "./ReductionSequence";
 
 function App() {
-  const strategies = ["CBN", "Custom"];
+  const strategies = ["CBN", "LCBW", "RCBW", "LOW", "Custom"];
 
   const [ result, setResult ] = useState('');
   const [ input, setInput ] = useState('');

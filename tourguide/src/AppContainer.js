@@ -29,6 +29,7 @@ export class AppContainer extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
+    /* //This is the initial hardcoded version of the CBN reduction strategy that we made. It functions similarly to the one build using phased strategies
     callByName(term, isRecursive) {
         if(term.Value === "ABS" && term.RightChild.Value === "APP") {
             term.RightChild = this.callByName(term.RightChild, true);
@@ -54,6 +55,7 @@ export class AppContainer extends React.Component {
         }
         return term;
     }
+    */
 
     ExecuteCustomRule(term, phasedStrategy, loop) {
         do {
@@ -134,8 +136,16 @@ export class AppContainer extends React.Component {
         this.path.push(converter.BuildStringFromTree(term));
         switch(setting) {
             case "CBN":
-                result = converter.BuildStringFromTree(this.callByName(term, false));
-               return result;
+                return converter.BuildStringFromTree(this.ExecuteCustomRule(term, ["↙𝄇","β"], true));
+            
+            case "LCBW":
+                return converter.BuildStringFromTree(this.ExecuteCustomRule(term, ["↙𝄇","↘𝄇","β"], true));
+
+            case "RCBW":
+                return converter.BuildStringFromTree(this.ExecuteCustomRule(term, ["↘𝄇","↙𝄇","β"], true));
+
+            case "LOW":
+                return converter.BuildStringFromTree(this.ExecuteCustomRule(term, ["β","↙𝄇","↘𝄇"], true));
 
             case "Custom":
                 if(this.props.custom.length === 0) {
@@ -154,7 +164,6 @@ export class AppContainer extends React.Component {
     handleClick(e) {
             const setting = this.props.setting;
             const result = this.calculate(setting);
-            //this.path.forEach(element => console.log("Step: \n" + element));
             const number = this.path.length - 1;
             this.props.onClick(result, number, this.path);
         }
