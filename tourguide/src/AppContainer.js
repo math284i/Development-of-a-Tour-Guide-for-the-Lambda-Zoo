@@ -56,46 +56,70 @@ export class AppContainer extends React.Component {
         return term;
     }
 
-    ExecuteCustomRule(term, phasedStrategy) {
-        var temp = term;
-        phaseloop: for(var i = 0; i < phasedStrategy.length; i++) {
-            var flag = false;
-            elementloop: for(let element in phasedStrategy) {
-                var result = this.CustomRulesHelper(element, temp, phasedStrategy);
-                if(result === false) {
-                    flag = true;
-                    break elementloop;
+    ExecuteCustomRule(term, phasedStrategy, loop) {
+        do {
+            var result;
+            var flag = 0;
+            for(let phase of phasedStrategy) {
+                result = this.CustomRulesHelper(term, phase, phasedStrategy);
+                if(!result) {
+                    flag++;
+                }else {
+                    term = result;
+                    if(loop) {
+                        this.path.push(converter.BuildStringFromTree(term));
+                    }
                 }
-                temp = result;
             }
-        }
-        //Try phase 0
-        //If phase 0 works, do nothing
-        //Else, if phase 0 does not work, try phase 1
-        //If phase 1 does not work, try phase 2 and so forth, until array ends
-        //If none of them work, term is already in normal form
+            if(flag === phasedStrategy.length) {
+                if(loop) {
+                    loop = false;
+                }else {
+                    return false;
+                }
+            }else {
+            }
+        } while(loop);
         return term;
     }
 
     CustomRulesHelper(term, element, phasedStrategy) {
         switch (element) {
-            case "↙":
-                return customRules.LeftArrowFunction(term);
+            case "↙𝄇":
+                if(term.Value === "APP") {
+                    var recurse = this.ExecuteCustomRule(term.LeftChild, phasedStrategy, false);
+                    if(recurse !== false) {
+                        term.LeftChild = recurse;
+                        return term;
+                    }
+                }
+                return false;
 
-            case "↘":
-                return customRules.RightArrowFunction(term);
+            case "↘𝄇":
+                if(term.Value === "APP") {
+                    var recurse = this.ExecuteCustomRule(term.RightChild, phasedStrategy, false);
+                    if(recurse !== false) {
+                        term.RightChild = recurse;
+                        return term;
+                    }
+                }
+                return false;
 
-            case "↓":
-                return customRules.DownArrowFunction(term);
+            case "↓𝄇":
+                if(term.Value === "ABS") {
+                    var recurse = this.ExecuteCustomRule(term.RightChild, phasedStrategy, false);
+                    if(recurse !== false) {
+                        term.RightChild = recurse;
+                        return term;
+                    }
+                }
+                return false;
 
             case "β":
                 return customRules.BetaFunction(term);
 
             case "∪":
                 return customRules.UnionFunction(term);
-
-            case "𝄇":
-                return customRules.ExecuteCustomRule(term, phasedStrategy);
 
             default:
                 console.log("something went wrong in customRulesHelper");
@@ -105,16 +129,17 @@ export class AppContainer extends React.Component {
 
     calculate(setting) {
         this.path = [];
+        var result;
         var term = buildTermFromString(this.props.input);
         this.path.push(converter.BuildStringFromTree(term));
         switch(setting) {
             case "CBN":
-                var result = converter.BuildStringFromTree(this.callByName(term, false));
+                result = converter.BuildStringFromTree(this.callByName(term, false));
                return result;
 
             case "Custom":
                 var phasedStrategy = this.props.custom.split(";");
-                var result = converter.BuildStringFromTree(this.ExecuteCustomRule(term, phasedStrategy));
+                result = converter.BuildStringFromTree(this.ExecuteCustomRule(term, phasedStrategy, true));
                 return result;
 
             default:
