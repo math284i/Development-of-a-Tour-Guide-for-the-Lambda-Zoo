@@ -54,6 +54,7 @@ body::-webkit-scrollbar {
   float: left;
   height: 100%;
   width: 40%;
+
   /*border: 2px solid black;*/
 }
 
@@ -174,4 +175,48 @@ body :not(.UpperDiv):not(.SequenceDiv):not(.StatsDiv) :not(.OptionsDiv) :not(.Op
   margin-top: -2.5% !important;
   margin-left: 10px !important;
   margin-bottom: 2.5% !important;
+}
+
+
+.label-container {
+    position: relative;
+    margin: 0%;
+    display: flex;
+}
+
+.icon {
+  top: 0;
+  left: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #333333;
+  cursor: pointer;
+  margin-left: 36%;
+}
+
+
+/*Description*/
+.icon:hover::before {
+  content: attr(value);
+  position: fixed;
+  top: 17%;
+  left: 53.5%;
+  transform: translate(-50%, -50%);
+  background-color: #333333;
+  color: #ffffff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  white-space: pre-line;
+  z-index: 9999;
+}
+
+.icon:hover::before,
+.icon:hover::after {
+  opacity: 1;
 }
