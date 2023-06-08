@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { AppContainer } from './AppContainer';
 import { Input } from './Input';
 import { Setting } from './Setting';
@@ -7,6 +7,8 @@ import './App.css';
 import { ReductionSequence } from "./ReductionSequence";
 
 function App() {
+  const strategies = ["CBN", "Custom"];
+
   const [ result, setResult ] = useState('');
   const [ input, setInput ] = useState('');
 
@@ -14,7 +16,7 @@ function App() {
   const settingRef = useRef(null);
   const cursorPositionRef = useRef(0);
 
-  const [ setting, setSetting ] = useState('CBN');
+  const [ setting, setSetting ] = useState(strategies[0]);
   const [ custom, setCustom ] = useState('');
   const [ nrSteps, setNrSteps ] = useState();
   const [ path, setPath ] = useState([]);
@@ -93,7 +95,7 @@ function App() {
             <button className="button is-normal is-light" title="Repeat" onClick={() => addSymbolToCustom("𝄇")}>𝄇</button>
 
           </div>
-          <Setting label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
+          <Setting strats={strategies} label="Reduce using:" setting={setting} reference={settingRef} value={custom} onSettingChange={updateSetting} onCustomChange={updateCustom} />
           <div className="OptionElements">
             <AppContainer input={input} custom={custom} setting={setting} onClick={updateResult}/>
           </div>
