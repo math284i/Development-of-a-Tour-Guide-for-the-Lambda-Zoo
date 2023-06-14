@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.css";
-import { TreeNodeComponent } from "./AppContainer"
 
 export class ReductionSequence extends React.Component {
     constructor(props) {

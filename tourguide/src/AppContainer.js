@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import 'bulma/css/bulma.css';
-import { buildTermFromString, substituteInTree } from "./Infrastructure/DataStructurHelper.js"
+import { buildTermFromString } from "./Infrastructure/DataStructurHelper.js"
 import { TreeNode } from "./Infrastructure/DataStructur";
 import { Converter } from "./Infrastructure/Converter";
 import { CustomRules } from "./Infrastructure/CustomRules";
