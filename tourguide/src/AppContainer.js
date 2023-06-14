@@ -26,7 +26,7 @@ export class AppContainer extends React.Component {
     constructor(props) {
         super(props);
         this.path = [];
-        this.validPhases = ["↙𝄇","↘𝄇","↓𝄇","β","∪"]
+        this.validPhases = ["↙𝄇","↘𝄇","↓𝄇","β"]
         this.handleClick = this.handleClick.bind(this);
     }
 

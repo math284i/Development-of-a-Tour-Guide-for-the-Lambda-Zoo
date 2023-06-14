@@ -1,6 +1,6 @@
 # Development-of-a-Tour-Guide-for-the-Lambda-Zoo
 Bachelor Project, 2023 At DTU, where we develop a tour guide for the lambda zoo, consisting of a REACT website, which can use various reduction strategies on given lambda expressions.
-\\
+<br />
 The website can be found on our github page:
 `https://math284i.github.io/` 
 
