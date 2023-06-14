@@ -9,7 +9,7 @@ The website can be found on our github page: \\
 ## Requirements
 - You need to have Node.js installed
 
-## --
+
 
 In the project directory, you can run:
 
