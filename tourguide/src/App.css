@@ -25,6 +25,7 @@ body::-webkit-scrollbar {
 }
 
 .SequenceDiv {
+  overflow-y:auto;
   float: left;
   height: 85%;
   width: 60%;

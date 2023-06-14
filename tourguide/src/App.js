@@ -65,7 +65,7 @@ function App() {
   return (
     <div className="App">
       <div className="UpperDiv">
-        <h1 className="title is-1">Lamda Zoo Tour Guide</h1>
+        <h1 className="title is-1">Lambda Zoo Tour Guide</h1>
         <div>
           <div>
             <button className="button is-normal is-light" onClick={() => addSymbolToInput("λ")}>λ</button>

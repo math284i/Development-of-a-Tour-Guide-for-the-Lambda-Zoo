@@ -1,4 +1,3 @@
-import { TreeNode } from "./DataStructur";
 import { Converter } from "./Converter";
 export function buildTermFromString(termString) {
         let inputHandler = new Converter();    
