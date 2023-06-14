@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import SettingComponent from "./SaveCustomComponent";
+import SaveCustomComponent from "./SaveCustomComponent";
 
 
 export class Setting extends React.Component {
@@ -45,7 +45,7 @@ export class Setting extends React.Component {
             </div>
             <div style={{visibility: this.props.setting === "Custom" ? 'visible' : 'hidden'}}>
             <input className="input is-small" ref={this.props.reference} value={this.props.value} placeholder={`Enter custom reduction sequence`} onChange={this.handleCustomChange} />
-            <SettingComponent addToCustom={this.replaceCustom} value={this.props.value}/>
+            <SaveCustomComponent addToCustom={this.replaceCustom} value={this.props.value}/>
             </div>
         </div>
         );

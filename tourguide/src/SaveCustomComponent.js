@@ -2,7 +2,7 @@ import React, {useState, useRef} from "react";
 import "./App.css";
 
 
-export default function SettingComponent(props) {
+export default function SaveCustomComponent(props) {
 
     const [dropdownItems, setDropdownItems] = useState([
         { label: "Saved", value: "" },
