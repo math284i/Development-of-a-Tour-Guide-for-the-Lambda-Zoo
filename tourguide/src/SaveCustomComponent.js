@@ -35,9 +35,19 @@ export default function SaveCustomComponent(props) {
     const handleSaveCustomRule = () => {
         let name = prompt("Give a name to ur strategy \n" + props.value)
         if (name !== null) {
-          const newValue = {label: name, value: props.value};
-          setDropdownItems(dropdownItems => [...dropdownItems, newValue]);
-          setSelectedValue(newValue);
+            const presentLabel = dropdownItems.find(item => item.label === name);
+            if (presentLabel) {
+                let decision = window.confirm(`Name already exists. With value: ${presentLabel.value} \n Do you want to replace it?`);
+                if (decision) {
+                    setDropdownItems(prevItems => prevItems.filter(i => i !== presentLabel));
+                }
+                else {
+                    return;
+                }
+            }
+            const newValue = {label: name, value: props.value};
+            setDropdownItems(dropdownItems => [...dropdownItems, newValue]);
+            setSelectedValue(newValue);
         }
     };
 
