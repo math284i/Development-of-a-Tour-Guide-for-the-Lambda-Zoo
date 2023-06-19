@@ -30,34 +30,6 @@ export class AppContainer extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    /* //This is the initial hardcoded version of the CBN reduction strategy that we made. It functions similarly to the one build using phased strategies
-    callByName(term, isRecursive) {
-        if(term.Value === "ABS" && term.RightChild.Value === "APP") {
-            term.RightChild = this.callByName(term.RightChild, true);
-            this.path.push(converter.BuildStringFromTree(term));
-        }
-        while(term.Value === "APP") {
-            if(term.LeftChild.Value === "ABS") {
-                var func = term.LeftChild.RightChild;
-                var parameter = term.LeftChild.LeftChild;
-                var subs = term.RightChild;
-                term = substituteInTree(func, parameter, subs);
-            } else if(term.LeftChild.Value === "APP") {
-                term.LeftChild = this.callByName(term.LeftChild, true);
-            } else if(term.RightChild.Value === "APP") {
-                term.RightChild = this.callByName(term.RightChild, true);
-            } else {
-                break;
-            }
-            if(!isRecursive) {
-                //console.log(TreeNode.ToString(term));
-                this.path.push(converter.BuildStringFromTree(term));
-            }
-        }
-        return term;
-    }
-    */
-
     ExecuteCustomRule(term, phasedStrategy, loop) {
         repeatloop: do {
             var result;
@@ -81,7 +53,6 @@ export class AppContainer extends React.Component {
                 }else {
                     return false;
                 }
-            }else {
             }
         } while(loop);
         return term;

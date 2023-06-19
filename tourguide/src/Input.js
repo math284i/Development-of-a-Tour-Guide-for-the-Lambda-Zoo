@@ -5,7 +5,6 @@ import "./App.css";
 export class Input extends React.Component {
     constructor(props) {
         super(props);
-        this.placeHolderText = props.placeHolderText;
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -17,7 +16,7 @@ export class Input extends React.Component {
     render() {
         return (
         <div className="control">
-            <input ref={this.props.reference} placeholder={this.placeHolderText} className="input" id="large-input" value={this.props.value} onChange={this.handleChange}/>
+            <input ref={this.props.reference} placeholder={this.props.placeHolderText} className="input" id="large-input" value={this.props.value} onChange={this.handleChange}/>
         </div>
         );
     }
