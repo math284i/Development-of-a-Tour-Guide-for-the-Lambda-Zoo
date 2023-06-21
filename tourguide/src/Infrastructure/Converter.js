@@ -12,7 +12,7 @@ export class Converter {
                 [sanitisedString, index] = this.SanitizeString(inputString, index, -1);
                 root.LeftChild = this.BuildTreeFromString(sanitisedString, root);
 
-                [sanitisedString, index] = this.SanitizeString(inputString, index, 0);
+                [sanitisedString, index] = this.SanitizeString(inputString, index, -1);
                 root.RightChild = this.BuildTreeFromString(sanitisedString, root);
                 break;
 
@@ -28,7 +28,7 @@ export class Converter {
 
                 root.LeftChild = this.BuildTreeFromString(sanitisedString, root);
 
-                [sanitisedString, index] = this.SanitizeString(inputString, index, 0);
+                [sanitisedString, index] = this.SanitizeString(inputString, index, -1);
 
                 root.RightChild = this.BuildTreeFromString(sanitisedString, root);
                 break;
