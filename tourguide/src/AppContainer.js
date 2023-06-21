@@ -129,7 +129,7 @@ export class AppContainer extends React.Component {
                     for(let phase of phasedStrategy) {
                         if(!this.validPhases.includes(phase)) {
                             alert("Please enter a valid phased strategy. Valid phases are: " + this.validPhases.toString());
-                            return converter.BuildStringFromTree(term);;
+                            return converter.BuildStringFromTree(term);
                         }
                     }
                     result = converter.BuildStringFromTree(this.ExecuteCustomRule(term, phasedStrategy, true));
