@@ -11,7 +11,7 @@ export function substituteInTree(node, parameter, substituteWith) {
   }else if(node.Value === "APP") {
     node.LeftChild = substituteInTree(node.LeftChild, parameter, substituteWith);
     node.RightChild = substituteInTree(node.RightChild, parameter, substituteWith);
-  }else if(node.Value === "ABS" && node.LeftChild.Value !== parameter) {
+  }else if(node.Value === "ABS" && node.LeftChild.Value !== parameter.Value) {
     node.RightChild = substituteInTree(node.RightChild, parameter, substituteWith);
   }
   return node;
